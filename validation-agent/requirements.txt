@@ -2,3 +2,4 @@ fastapi
 uvicorn==0.29.0
 cohere==5.5.0
 pydantic==2.7.1
+guardrails-ai==0.5.10

@@ -25,6 +25,8 @@ class FinalResponse(BaseModel):
     hallucination_risk: str
     validation_notes: str
     confidence: float
+    guardrails_passed: bool
+    guardrails_notes: str
 
 @app.get("/health")
 def health():
@@ -87,12 +89,14 @@ async def query(request: QueryRequest):
             )
 
         return FinalResponse(
-            query=request.query,
-            retrieved_chunks=chunks,
-            raw_answer=raw_answer,
-            final_answer=validation_data["final_answer"],
-            is_grounded=validation_data["is_grounded"],
-            hallucination_risk=validation_data["hallucination_risk"],
-            validation_notes=validation_data["validation_notes"],
-            confidence=confidence
-        )
+    query=request.query,
+    retrieved_chunks=chunks,
+    raw_answer=raw_answer,
+    final_answer=validation_data["final_answer"],
+    is_grounded=validation_data["is_grounded"],
+    hallucination_risk=validation_data["hallucination_risk"],
+    validation_notes=validation_data["validation_notes"],
+    confidence=confidence,
+    guardrails_passed=validation_data["guardrails_passed"],
+    guardrails_notes=validation_data["guardrails_notes"]
+)
