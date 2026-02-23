@@ -15,7 +15,11 @@ Reasoning Agent (Cohere command-r-plus) → Port 8002
     ↓
 Validation Agent (Hallucination detection) → Port 8003
     ↓
-Final grounded response
+Cohere hallucination check 
+    ↓
+Guardrails AI output validation
+    ↓
+Final safe response
 
 
 ## Tech Stack
@@ -101,3 +105,4 @@ curl -X POST http://localhost:PORT/query \
   "confidence": 0.95
 }
 ```
+
